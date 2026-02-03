@@ -1,0 +1,100 @@
+{
+  "validLoginCredentials": {
+    "email": "test01@gmail.com",
+    "password": "ValidPassword@123"
+  },
+  "invalidLoginCredentials": [
+    {
+      "email": "invalidemail",
+      "password": "ValidPassword@123",
+      "expectedError": "Invalid email format"
+    },
+    {
+      "email": "test01@gmail.com",
+      "password": "WrongPassword@123",
+      "expectedError": "Invalid credentials"
+    },
+    {
+      "email": "nonexistent@gmail.com",
+      "password": "ValidPassword@123",
+      "expectedError": "Account not found"
+    }
+  ],
+  "validRegistrationData": {
+    "companyName": "Tech Company Ltd",
+    "email": "employer@techcompany.com",
+    "phone": "+1234567890",
+    "password": "SecurePassword@123",
+    "confirmPassword": "SecurePassword@123"
+  },
+  "invalidRegistrationData": [
+    {
+      "companyName": "",
+      "email": "employer@techcompany.com",
+      "phone": "+1234567890",
+      "password": "SecurePassword@123",
+      "confirmPassword": "SecurePassword@123",
+      "expectedError": "Company name is required"
+    },
+    {
+      "companyName": "Tech Company Ltd",
+      "email": "invalidemail",
+      "phone": "+1234567890",
+      "password": "SecurePassword@123",
+      "confirmPassword": "SecurePassword@123",
+      "expectedError": "Invalid email format"
+    },
+    {
+      "companyName": "Tech Company Ltd",
+      "email": "employer@techcompany.com",
+      "phone": "123",
+      "password": "SecurePassword@123",
+      "confirmPassword": "SecurePassword@123",
+      "expectedError": "Invalid phone number format"
+    },
+    {
+      "companyName": "Tech Company Ltd",
+      "email": "employer@techcompany.com",
+      "phone": "+1234567890",
+      "password": "weak123",
+      "confirmPassword": "weak123",
+      "expectedError": "Password must be at least 8 characters"
+    },
+    {
+      "companyName": "Tech Company Ltd",
+      "email": "employer@techcompany.com",
+      "phone": "+1234567890",
+      "password": "SecurePassword@123",
+      "confirmPassword": "DifferentPassword@123",
+      "expectedError": "Passwords do not match"
+    }
+  ],
+  "passwordTestCases": {
+    "weak": ["pass", "Pass123", "password"],
+    "medium": ["Pass@123", "SecurePass@12"],
+    "strong": ["SecurePassword@123", "ComplexP@ss123word"]
+  },
+  "phoneFormats": [
+    "+1-234-567-8900",
+    "(123) 456-7890",
+    "+44 20 7946 0958",
+    "+1234567890",
+    "123-456-7890"
+  ],
+  "companyNames": [
+    "Tech Company Ltd",
+    "ABC Corporation",
+    "Digital Solutions Inc",
+    "Global Tech Enterprises",
+    "Innovation Systems"
+  ],
+  "errorMessages": {
+    "requiredFields": "This field is required",
+    "invalidEmail": "Invalid email format",
+    "invalidPhone": "Invalid phone number format",
+    "weakPassword": "Password is too weak",
+    "passwordMismatch": "Passwords do not match",
+    "accountLocked": "Account locked. Please try again later.",
+    "alreadyRegistered": "Email already registered"
+  }
+}
