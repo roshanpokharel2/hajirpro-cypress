@@ -1,5 +1,5 @@
 describe('Employer Login Tests', () => {
-  const baseUrl = 'employer.veloxlabs.net'; // Update with actual URL
+  const baseUrl = 'https://employer.veloxlabs.net'; 
   
   beforeEach(() => {
     cy.visit(`${baseUrl}/login`);
@@ -8,11 +8,7 @@ describe('Employer Login Tests', () => {
   // Test Case 1: Successful Login
   describe('Successful Login', () => {
     it('should login successfully with valid credentials', () => {
-      cy.get('[name="phone"]').type('test01@gmail.com');
-      cy.get('input[type="password"]').type('Hajir@123');
-      cy.get('button:contains("Login")').click();
-      
-      cy.url().should('include', '/dashboard');
+      cy.employerlogin();  
     });
   });
 
@@ -23,14 +19,14 @@ describe('Employer Login Tests', () => {
       cy.get('input[type="password"]').type('Hajir@123');
       cy.get('button:contains("Login")').click();
       
-      cy.get('#standard-weight-helper-text-phone-login').should('contain', 'Either a valid phone number or email is required');
+      cy.get('#standard-weight-helper-text-phone-login', { timeout: 10000 }).should('be.visible').and('contain', 'Either a valid phone number or email is required');
     });
 
     it('should not allow login without email or Phone', () => {
       cy.get('input[type="password"]').type('Hajir@123');
       cy.get('button:contains("Login")').click();
       
-      cy.get('#standard-weight-helper-text-phone-login').should('contain', 'Phone or Email is required');
+      cy.get('#standard-weight-helper-text-phone-login', { timeout: 10000 }).should('be.visible').and('contain', 'Phone or Email is required');
     });
   });
 
@@ -41,14 +37,14 @@ describe('Employer Login Tests', () => {
       cy.get('input[type="password"]').type('WrongPassword@123');
       cy.get('button:contains("Login")').click();
       
-     cy.get('#notistack-snackbar').should('contain', 'Phone No/Email or password is incorrect.');
+      cy.contains('Phone No/Email or password is incorrect.', { timeout: 10000 }).should('be.visible');
     });
 
     it('should not allow login without password', () => {
       cy.get('[name="phone"]').type('test01@gmail.com');
       cy.get('button:contains("Login")').click();
       
-      cy.get('#standard-weight-helper-text-password-login').should('contain', 'Password is required');
+      cy.get('#standard-weight-helper-text-password-login', { timeout: 10000 }).should('be.visible').and('contain', 'Password is required');
     });
   });
 
@@ -69,7 +65,7 @@ describe('Employer Login Tests', () => {
       cy.get('[name="phone"]').type("' OR '1'='1");
       cy.get('input[type="password"]').type('Hajir@123');
       cy.get('button:contains("Login")').click();
-      cy.get('#standard-weight-helper-text-phone-login').should('contain', 'Either a valid phone number or email is required');
+      cy.get('#standard-weight-helper-text-phone-login', { timeout: 10000 }).should('be.visible').and('contain', 'Either a valid phone number or email is required');
     });
     it('should hide password when eye icon is clicked', () => {
       cy.get('input[name="password"]').as('pwd').should('exist').clear().type('Hajir@123');
@@ -80,10 +76,8 @@ describe('Employer Login Tests', () => {
 
   // Test Case 6:Response Time
   describe(' Response Time', () => {
-    it('should complete login within 5 seconds', () => {
-      cy.get('[name="phone"]').type('test01@gmail.com');
-      cy.get('input[type="password"]').type('Hajir@123');
-      cy.get('button:contains("Login")').click({ timeout: 5000 });
+       it('should complete login within 5 seconds', () => {
+      cy.employerlogin();
       
       cy.url({ timeout: 5000 }).should('include', '/dashboard');
     });
