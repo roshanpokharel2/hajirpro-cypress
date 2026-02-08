@@ -1,0 +1,416 @@
+{
+  "stats": {
+    "suites": 8,
+    "tests": 10,
+    "passes": 10,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-02-07T13:45:02.195Z",
+    "end": "2026-02-07T13:45:51.363Z",
+    "duration": 49168,
+    "testsRegistered": 10,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e3be39f1-18d0-461c-bcb4-aa8993dadbe4",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Employer\\Subscription.cy.js",
+      "file": "cypress\\e2e\\Employer\\Subscription.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c8accd65-a0fa-4732-80c8-4bd8a17ea72a",
+          "title": "Employer Login Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "29ea8fb0-fe8c-426e-993a-c63854af8120",
+              "title": "Successful Login",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should login successfully with valid credentials",
+                  "fullTitle": "Employer Login Tests Successful Login should login successfully with valid credentials",
+                  "timedOut": null,
+                  "duration": 6778,
+                  "state": "passed",
+                  "speed": "medium",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"test01@gmail.com\");\ncy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.url().should(\"include\", \"/dashboard\");",
+                  "err": {},
+                  "uuid": "d7b1a89e-22e2-47f3-ba8e-3afe8efa9c27",
+                  "parentUUID": "29ea8fb0-fe8c-426e-993a-c63854af8120",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "d7b1a89e-22e2-47f3-ba8e-3afe8efa9c27"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 6778,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "f918c8ca-5c37-4e42-9991-b0d7f61c8315",
+              "title": "Invalid Email or phone Format",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should show error for invalid email format",
+                  "fullTitle": "Employer Login Tests Invalid Email or phone Format should show error for invalid email format",
+                  "timedOut": null,
+                  "duration": 1506,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"invalidemail\");\ncy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#standard-weight-helper-text-phone-login\").should(\"contain\", \"Either a valid phone number or email is required\");",
+                  "err": {},
+                  "uuid": "e9a41283-950f-454b-ad65-ccbed4aaf2ba",
+                  "parentUUID": "f918c8ca-5c37-4e42-9991-b0d7f61c8315",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not allow login without email or Phone",
+                  "fullTitle": "Employer Login Tests Invalid Email or phone Format should not allow login without email or Phone",
+                  "timedOut": null,
+                  "duration": 1126,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#standard-weight-helper-text-phone-login\").should(\"contain\", \"Phone or Email is required\");",
+                  "err": {},
+                  "uuid": "a1e2560a-af71-4294-92cc-8932c5e0ad02",
+                  "parentUUID": "f918c8ca-5c37-4e42-9991-b0d7f61c8315",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "e9a41283-950f-454b-ad65-ccbed4aaf2ba",
+                "a1e2560a-af71-4294-92cc-8932c5e0ad02"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2632,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "7539775d-8fc4-4c0a-8b7b-db3484fdd1f8",
+              "title": "Invalid Password",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should show error for incorrect password",
+                  "fullTitle": "Employer Login Tests Invalid Password should show error for incorrect password",
+                  "timedOut": null,
+                  "duration": 2960,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"test01@gmail.com\");\ncy.get('input[type=\"password\"]').type(\"WrongPassword@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#notistack-snackbar\").should(\"contain\", \"Phone No/Email or password is incorrect.\");",
+                  "err": {},
+                  "uuid": "32da17a5-6405-4c65-900f-03c1c4fc8667",
+                  "parentUUID": "7539775d-8fc4-4c0a-8b7b-db3484fdd1f8",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not allow login without password",
+                  "fullTitle": "Employer Login Tests Invalid Password should not allow login without password",
+                  "timedOut": null,
+                  "duration": 1091,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"test01@gmail.com\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#standard-weight-helper-text-password-login\").should(\"contain\", \"Password is required\");",
+                  "err": {},
+                  "uuid": "cc6064d0-1b21-4527-8046-2446b1fa0327",
+                  "parentUUID": "7539775d-8fc4-4c0a-8b7b-db3484fdd1f8",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "32da17a5-6405-4c65-900f-03c1c4fc8667",
+                "cc6064d0-1b21-4527-8046-2446b1fa0327"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 4051,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "bb4b052c-e3bf-4326-ad8f-f8087868a8e5",
+              "title": "User Not Registered",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should show error for non-existent account",
+                  "fullTitle": "Employer Login Tests User Not Registered should show error for non-existent account",
+                  "timedOut": null,
+                  "duration": 2556,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"nonexistent@gmail.com\");\ncy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#notistack-snackbar\").should(\"contain\", \"User not registered.\");",
+                  "err": {},
+                  "uuid": "2f7e88e6-fe45-4c80-98ea-c714f3b2e6d4",
+                  "parentUUID": "bb4b052c-e3bf-4326-ad8f-f8087868a8e5",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "2f7e88e6-fe45-4c80-98ea-c714f3b2e6d4"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2556,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "d661af70-01b2-40cc-89fa-f283abbd9e6a",
+              "title": "Session and Security",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should prevent SQL injection attempts",
+                  "fullTitle": "Employer Login Tests Session and Security should prevent SQL injection attempts",
+                  "timedOut": null,
+                  "duration": 1575,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"' OR '1'='1\");\ncy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click();\ncy.get(\"#standard-weight-helper-text-phone-login\").should(\"contain\", \"Either a valid phone number or email is required\");",
+                  "err": {},
+                  "uuid": "9a0cfe92-568a-4e2d-9d31-2446930ea83e",
+                  "parentUUID": "d661af70-01b2-40cc-89fa-f283abbd9e6a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should hide password when eye icon is clicked",
+                  "fullTitle": "Employer Login Tests Session and Security should hide password when eye icon is clicked",
+                  "timedOut": null,
+                  "duration": 1143,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('input[name=\"password\"]').as(\"pwd\").should(\"exist\").clear().type(\"Hajir@123\");\ncy.get(\".MuiInputAdornment-root > .MuiButtonBase-root\").click();\ncy.get(\"@pwd\").should(\"have.attr\", \"type\", \"text\").and(\"have.value\", \"Hajir@123\");",
+                  "err": {},
+                  "uuid": "8ff2c8ea-07a3-470b-831a-c349860725fa",
+                  "parentUUID": "d661af70-01b2-40cc-89fa-f283abbd9e6a",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "9a0cfe92-568a-4e2d-9d31-2446930ea83e",
+                "8ff2c8ea-07a3-470b-831a-c349860725fa"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2718,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "b0345115-1d2f-43a3-bda1-ecc38d9c676e",
+              "title": " Response Time",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should complete login within 5 seconds",
+                  "fullTitle": "Employer Login Tests  Response Time should complete login within 5 seconds",
+                  "timedOut": null,
+                  "duration": 4234,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.get('[name=\"phone\"]').type(\"test01@gmail.com\");\ncy.get('input[type=\"password\"]').type(\"Hajir@123\");\ncy.get('button:contains(\"Login\")').click({\n  timeout: 5000\n});\ncy.url({\n  timeout: 5000\n}).should(\"include\", \"/dashboard\");",
+                  "err": {},
+                  "uuid": "2e5afc67-a98e-4a98-b2db-0f7ccdef6a59",
+                  "parentUUID": "b0345115-1d2f-43a3-bda1-ecc38d9c676e",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "2e5afc67-a98e-4a98-b2db-0f7ccdef6a59"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 4234,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "d932aca5-0242-49af-bcbc-b492191914f2",
+          "title": "Company Dynamic Flow Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should handle any company scenario automatically",
+              "fullTitle": "Company Dynamic Flow Test Should handle any company scenario automatically",
+              "timedOut": null,
+              "duration": 21100,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Login\ncy.login(\"hajirqa123@gmail.com\", \"Hajir@123\");\ncy.wait(9000);\n// Handle dynamic company flow\ncy.handleCompanyFlow();",
+              "err": {},
+              "uuid": "2a3bd988-ae91-4061-ab45-d0967fd12b56",
+              "parentUUID": "d932aca5-0242-49af-bcbc-b492191914f2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2a3bd988-ae91-4061-ab45-d0967fd12b56"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 21100,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report-[datetime]",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "reportFilename": "report-[datetime]",
+        "datetime": "mmddyyyy_HHMMss",
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

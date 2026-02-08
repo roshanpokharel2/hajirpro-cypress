@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-02-07T13:46:40.832Z",
+    "end": "2026-02-07T13:47:09.109Z",
+    "duration": 28277,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4332e70f-a3c3-4168-8a34-08c98436b5c5",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Employer\\registration.cy.js",
+      "file": "cypress\\e2e\\Employer\\registration.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+          "title": "Employer Registration",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should complete employer registration with OTP using Phone Number",
+              "fullTitle": "Employer Registration should complete employer registration with OTP using Phone Number",
+              "timedOut": null,
+              "duration": 10848,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Generate random 10-digit phone number\nconst phoneNumber = '98' + Math.floor(Math.random() * 10000000).toString().padStart(8, '0');\ncy.log('Generated Phone Number:', phoneNumber);\n// Step 1: Enter phone/email and send OTP\ncy.get('input[placeholder=\"Enter a valid phone number or email\"]').type(phoneNumber);\ncy.contains('Send OTP').click();\ncy.wait(5000); // give backend time to store OTP\n// Step 2: Fetch latest OTP from API\ncy.request({\n  method: 'POST',\n  url: 'https://staging.veloxlabs.net/api/v2/get-latest-otp',\n  body: {\n    identifier: phoneNumber\n  }\n  //  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(200);\n  const otp = response.body.data.otp;\n  cy.log('Fetched OTP:', otp);\n  // Step 3: Enter OTP in UI\n  cy.get('input.MuiInputBase-input.MuiOutlinedInput-input').eq(0).type(otp);\n});\n//Verify OTP\ncy.get(':nth-child(2) > div > .MuiButtonBase-root').click();\n// Step 4: Fill password\ncy.get('input[placeholder=\"Enter password\"]').type('Roshan@123');\ncy.get('input[placeholder=\"Confirm password\"]').type('Roshan@123');\n// Step 5: Submit registration\ncy.contains('Submit Password').click();",
+              "err": {},
+              "uuid": "0ad8c199-4237-441c-9da2-b5f24efb8c04",
+              "parentUUID": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete employer registration with OTP using Email",
+              "fullTitle": "Employer Registration should complete employer registration with OTP using Email",
+              "timedOut": null,
+              "duration": 10770,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Generate random email\nconst email = 'employer' + Math.floor(Math.random() * 1000000) + '@test.com';\ncy.log('Generated Email:', email);\n// Step 1: Enter phone/email and send OTP\ncy.get('input[placeholder=\"Enter a valid phone number or email\"]').type(email);\ncy.contains('Send OTP').click();\ncy.wait(5000); // give backend time to store OTP\n// Step 2: Fetch latest OTP from API\ncy.request({\n  method: 'POST',\n  url: 'https://staging.veloxlabs.net/api/v2/get-latest-otp',\n  body: {\n    identifier: email\n  }\n  //  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(200);\n  const otp = response.body.data.otp;\n  cy.log('Fetched OTP:', otp);\n  // Step 3: Enter OTP in UI\n  cy.get('input.MuiInputBase-input.MuiOutlinedInput-input').eq(0).type(otp);\n});\n//Verify OTP\ncy.get(':nth-child(2) > div > .MuiButtonBase-root').click();\n// Step 4: Fill password\ncy.get('input[placeholder=\"Enter password\"]').type('Roshan@123');\ncy.get('input[placeholder=\"Confirm password\"]').type('Roshan@123');\n// Step 5: Submit registration\ncy.contains('Submit Password').click();",
+              "err": {},
+              "uuid": "b74a0382-609e-4427-9c8a-e8abf3df2d47",
+              "parentUUID": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should fail registration with invalid phone number format",
+              "fullTitle": "Employer Registration should fail registration with invalid phone number format",
+              "timedOut": null,
+              "duration": 1958,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const invalidPhone = '123';\ncy.log('Using Invalid Phone:', invalidPhone);\n// Step 1: Enter invalid phone and send OTP\ncy.get('input[placeholder=\"Enter a valid phone number or email\"]').type(invalidPhone);\ncy.contains('Send OTP').click();\ncy.get('.MuiFormHelperText-root').should('be.visible');",
+              "err": {},
+              "uuid": "d3d17778-b725-4581-9ad1-1d3ab73c9636",
+              "parentUUID": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should fail registration with invalid email format",
+              "fullTitle": "Employer Registration should fail registration with invalid email format",
+              "timedOut": null,
+              "duration": 2295,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const invalidEmail = 'invalidemail';\ncy.log('Using Invalid Email:', invalidEmail);\n// Step 1: Enter invalid email and send OTP\ncy.get('input[placeholder=\"Enter a valid phone number or email\"]').type(invalidEmail);\ncy.contains('Send OTP').click();\ncy.get('.MuiFormHelperText-root').should('be.visible');\n//cy.wait(5000)",
+              "err": {},
+              "uuid": "af8fd10e-1568-461d-8b37-faea1c369070",
+              "parentUUID": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should fail registration with non-existent phone number",
+              "fullTitle": "Employer Registration should fail registration with non-existent phone number",
+              "timedOut": null,
+              "duration": 2120,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const fakePhone = '9999999999';\ncy.log('Using Non-existent Phone:', fakePhone);\n// Step 1: Enter non-existent phone and send OTP\ncy.get('input[placeholder=\"Enter a valid phone number or email\"]').type(fakePhone);\ncy.contains('Send OTP').click();\n//cy.wait(5000)\ncy.get('.MuiFormHelperText-root').should('be.visible');",
+              "err": {},
+              "uuid": "7148286b-5c06-4902-867d-fb08a4d25909",
+              "parentUUID": "74b6a165-f884-4d1e-aeb6-c22b7cf6e69f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0ad8c199-4237-441c-9da2-b5f24efb8c04",
+            "b74a0382-609e-4427-9c8a-e8abf3df2d47",
+            "d3d17778-b725-4581-9ad1-1d3ab73c9636",
+            "af8fd10e-1568-461d-8b37-faea1c369070",
+            "7148286b-5c06-4902-867d-fb08a4d25909"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 27991,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report-[datetime]",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "reportFilename": "report-[datetime]",
+        "datetime": "mmddyyyy_HHMMss",
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,5 +1,28 @@
 {
   "devDependencies": {
-    "cypress-file-upload": "^5.0.8"
+    "axios": "^1.6.0",
+    "cypress": "^13.0.0",
+    "cypress-file-upload": "^5.0.8",
+    "express": "^4.22.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "test:headless": "cypress run --headless",
+    "test:with-report": "cypress run && node slack-notify.js",
+    "test:employer": "cypress run --spec 'cypress/e2e/Employer/**/*.cy.js'",
+    "open": "cypress open",
+    "report:merge": "mochawesome-merge cypress/reports/*.json -o cypress/reports/merged-report.json",
+    "report:generate": "mochawesome-report-generator cypress/reports/merged-report.json -o cypress/reports/final-report",
+    "notify:slack": "node slack-notify.js",
+    "serve:report": "node serve-report.js",
+    "report:html": "node generate-html-report.js",
+    "roshanrun": "npm run test:with-report && npm run notify:slack",
+    "all": "node run-all.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4"
   }
 }

@@ -1,6 +1,6 @@
 module.exports = {
   e2e: {
-    baseUrl: 'https://employer.veloxlabs.net', // Update with your actual application URL
+    baseUrl: 'https://employer.veloxlabs.net', 
     viewportWidth: 1280,
     viewportHeight: 720,
     defaultCommandTimeout: 8000,
@@ -9,7 +9,6 @@ module.exports = {
     pageLoadTimeout: 30000,
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      // Example: Custom tasks for database operations
       on('task', {
         log(message) {
           console.log(message);
@@ -18,21 +17,30 @@ module.exports = {
       });
     },
     env: {
-      // Set environment variables
-      apiUrl: 'employer.veloxlabs.net/api',
+      apiUrl: 'staging.veloxlabs.net/api/v2',
       appUrl: 'https://employer.veloxlabs.net',
     },
     // Screenshot and video configuration
     screenshotOnRunFailure: true,
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
-    video: false,
+    video: true,
+    videoCompression: 32,
     // Test isolation
     testIsolation: true,
     // Retries
     retries: {
-      runMode: 2,
+      runMode: 0,
       openMode: 0,
+    },
+    // Reporter configuration
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/reports',
+      reportFilename: 'report-[datetime]',
+      datetime: 'mmddyyyy_HHMMss',
+      html: true,
+      json: true,
     },
   },
 };
