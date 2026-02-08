@@ -20,7 +20,11 @@
     "serve:report": "node serve-report.js",
     "report:html": "node generate-html-report.js",
     "roshanrun": "npm run test:with-report && npm run notify:slack",
-    "all": "node run-all.js"
+    "roshanreport": "npm run report:merge && npm run report:generate && npm run report:html",
+      "roshanserve": "npm run serve:report",
+      "roshanall": "npm run roshanrun && npm run roshanreport && npm run roshanserve"
+
+   
   },
   "dependencies": {
     "dotenv": "^17.2.4"
